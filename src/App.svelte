@@ -6,7 +6,7 @@
 
 </script>
 
-<h1>Pocketchat</h1>
+<h1>Tyler's chat app</h1>
 
 <Login />
 
