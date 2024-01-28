@@ -50,7 +50,7 @@
     <div class="msg">
       <img
         class="avatar"
-        src={`https://avatars.dicebear.com/api/identicon/${message.expand?.user?.username}.svg`}
+        src={`https://api.dicebear.com/7.x/fun-emoji/svg?seed=${message.expand?.user?.username}`}
         alt="avatar"
         width="40px"
       />
