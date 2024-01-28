@@ -2,7 +2,7 @@
   import { onDestroy, onMount } from "svelte";
   import { currentUser, pb } from "./pocketbase";
 
-  let newExercise: string;
+  let newExercise: Exercise = { name: "", description: "" };
   let exercises: Exercise[] = [];
   let unsubscribe: () => void;
 
@@ -35,13 +35,13 @@
 
   async function addExercise() {
     const data = {
-      text: newExercise,
-      user: $currentUser.id,
+      ...newExercise,
+      owner: $currentUser.id,
     };
     const createdMessage = await pb
       .collection<Exercise>("exercises")
       .create(data);
-    newExercise = "";
+    newExercise = { name: "", description: "" };
   }
 </script>
 
@@ -59,6 +59,16 @@
 </div>
 
 <form on:submit|preventDefault={addExercise}>
-  <input placeholder="Add new exercise" type="text" bind:value={newExercise} />
+  <input
+    placeholder="Exercise name"
+    type="text"
+    bind:value={newExercise.name}
+  />
+
+  <input
+    placeholder="Exercise description"
+    type="text"
+    bind:value={newExercise.description}
+  />
   <button type="submit">Add</button>
 </form>

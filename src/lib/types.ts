@@ -1,9 +1,9 @@
 type Role = "patient" | "doctor";
 
 type PocketBaseFields = {
-  id: string;
-  created: string;
-  updated: string;
+  id?: string;
+  created?: string;
+  updated?: string;
 };
 type User = PocketBaseFields & {
   email: string;
@@ -22,13 +22,13 @@ type Message = PocketBaseFields & {
 };
 
 type Exercise = PocketBaseFields & {
-  category: string;
-  description?: string;
-  equipment: string[];
-  instructions: string[];
+  category?: string;
+  description: string;
+  equipment?: string[];
+  instructions?: string[];
   name: string;
-  primary_muscles: string[];
-  secondary_muscles: string[];
+  primary_muscles?: string[];
+  secondary_muscles?: string[];
   variations_on?: string[];
   video?: string;
   owner?: string;
