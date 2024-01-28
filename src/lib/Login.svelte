@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { currentUser, pb } from './pocketbase';
+  import { currentUser, pb } from "./pocketbase";
 
   let username: string;
   let password: string;
 
   async function login() {
-    await pb.collection('users').authWithPassword(username, password);
+    await pb.collection("users").authWithPassword(username, password);
   }
 
   async function signUp() {
@@ -14,39 +14,36 @@
         username,
         password,
         passwordConfirm: password,
-        name: 'hi mom!',
+        name: "hi mom!",
       };
-      const createdUser = await pb.collection('users').create(data);
+      const createdUser = await pb.collection("users").create(data);
       await login();
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
   function signOut() {
     pb.authStore.clear();
   }
-
 </script>
 
 {#if $currentUser}
   <p>
-    Signed in as {$currentUser.username} 
+    Signed in as {$currentUser.username}
+    <img
+      class="avatar"
+      src={`https://api.dicebear.com/7.x/fun-emoji/svg?seed=${$currentUser?.username}`}
+      alt="avatar"
+      width="40px"
+    />
     <button on:click={signOut}>Sign Out</button>
   </p>
 {:else}
   <form on:submit|preventDefault>
-    <input
-      placeholder="Username"
-      type="text"
-      bind:value={username}
-    />
+    <input placeholder="Username" type="text" bind:value={username} />
 
-    <input 
-      placeholder="Password" 
-      type="password" 
-      bind:value={password} 
-    />
+    <input placeholder="Password" type="password" bind:value={password} />
     <button on:click={signUp}>Sign Up</button>
     <button on:click={login}>Login</button>
   </form>

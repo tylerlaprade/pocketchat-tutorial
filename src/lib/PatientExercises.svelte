@@ -47,7 +47,7 @@
 
 <div class="messages">
   {#each messages as message (message.id)}
-    <div class="msg">
+    <div>
       <img
         class="avatar"
         src={`https://api.dicebear.com/7.x/fun-emoji/svg?seed=${message.expand?.user?.username}`}
@@ -58,7 +58,7 @@
         <small>
           Sent by @{message.expand?.user?.username}
         </small>
-        <p class="msg-text">{message.text}</p>
+        <p>{message.text}</p>
       </div>
     </div>
   {/each}
